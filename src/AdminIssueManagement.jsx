@@ -6,6 +6,7 @@ import StatusBadge from "./StatusBadge";
 import PriorityBadge from "./PriorityBadge";
 import authService from "./api/authService";
 import issueService from "./api/issueService";
+import { getAssetUrl } from "./api/axiosConfig";
 
 function AdminIssueManagement() {
   const navigate = useNavigate();
@@ -374,11 +375,7 @@ function AdminIssueManagement() {
                     <div style={{ marginTop: "0.5rem" }}>
                       <span className="preview-label">Photo Evidence:</span>
                       <img
-                        src={
-                          selectedIssue.imageUrl.startsWith("http")
-                            ? selectedIssue.imageUrl
-                            : `http://localhost:8080${selectedIssue.imageUrl}`
-                        }
+                        src={getAssetUrl(selectedIssue.imageUrl)}
                         alt="Evidence"
                         style={{ maxWidth: "100%", maxHeight: "160px", borderRadius: "6px", display: "block", marginTop: "4px", objectFit: "cover" }}
                       />

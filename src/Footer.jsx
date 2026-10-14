@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "./api/axiosConfig";
 
 export function Footer() {
   return (
@@ -50,7 +51,7 @@ export function Footer() {
           <p>© {new Date().getFullYear()} CivicResolve System. All rights reserved.</p>
           <div className="footer-status-pill">
             <span className="status-live-dot"></span>
-            <span>REST API Online: localhost:8080</span>
+            <span>REST API: {API_BASE_URL.replace(/^https?:\/\//, "")}</span>
           </div>
         </div>
       </div>

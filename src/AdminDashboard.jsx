@@ -26,7 +26,7 @@ function AdminDashboard() {
         authService.logout();
         navigate("/log");
       } else {
-        setError("Error communicating with Spring Boot dashboard API on localhost:8080.");
+        setError("Error communicating with Spring Boot dashboard API.");
       }
     } finally {
       setLoading(false);

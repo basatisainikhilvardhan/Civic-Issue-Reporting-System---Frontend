@@ -18,7 +18,12 @@ jest.mock("./api/axiosConfig", () => {
       response: { use: jest.fn() },
     },
   };
-  return mockApi;
+  return {
+    __esModule: true,
+    default: mockApi,
+    API_BASE_URL: "http://localhost:8080",
+    getAssetUrl: (path) => (!path ? "" : path.startsWith("http") ? path : `http://localhost:8080${path.startsWith("/") ? path : `/${path}`}`),
+  };
 });
 
 describe("Frontend Authentication & Protected Routes Test Suite", () => {

@@ -6,6 +6,7 @@ import StatusBadge from "./StatusBadge";
 import PriorityBadge from "./PriorityBadge";
 import authService from "./api/authService";
 import issueService from "./api/issueService";
+import { getAssetUrl } from "./api/axiosConfig";
 
 function IssueDetails() {
   const { id } = useParams();
@@ -192,11 +193,7 @@ function IssueDetails() {
                   <div className="evidence-box">
                     <h4>Attached Visual Evidence</h4>
                     <img
-                      src={
-                        issue.imageUrl.startsWith("http")
-                          ? issue.imageUrl
-                          : `http://localhost:8080${issue.imageUrl}`
-                      }
+                      src={getAssetUrl(issue.imageUrl)}
                       alt="Civic Issue Proof"
                       className="evidence-photo"
                       onError={(e) => {

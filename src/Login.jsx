@@ -70,7 +70,7 @@ function Login() {
           (typeof err.response.data === "string" ? err.response.data : null);
         setErrorMessage(backendError || "Invalid email or password.");
       } else {
-        setErrorMessage("Network error: Could not reach Spring Boot backend on localhost:8080.");
+        setErrorMessage("Network error: Could not reach Spring Boot backend. Please check your connection.");
       }
     } finally {
       setLoading(false);

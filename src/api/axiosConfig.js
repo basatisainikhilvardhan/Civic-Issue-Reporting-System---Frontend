@@ -1,9 +1,20 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
+const rawBaseUrl = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
+export const API_BASE_URL = rawBaseUrl.replace(/\/+$/, "");
+
+export const getAssetUrl = (path) => {
+  if (!path) return "";
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  return `${API_BASE_URL}${cleanPath}`;
+};
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 60000, // Accommodate Render free-tier cold-start wakeups (30-50s)
   headers: {
     "Content-Type": "application/json",
   },

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './api/axiosConfig';
 import { useState } from 'react';
 
 function Delete() {
@@ -10,8 +10,12 @@ function Delete() {
     )
     const submit= async()=>
     {
-        const res = await axios.post("http://localhost:8080/delete",data)
-        alert(res.data)
+        try {
+            const res = await api.post("/delete", data);
+            alert(res.data);
+        } catch (err) {
+            alert(err.response?.data?.message || err.message || "Failed to delete account");
+        }
     }
     return(
         <>
